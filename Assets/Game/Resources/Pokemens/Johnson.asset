@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39e36945d804fa49b9370c03373ba34, type: 3}
   m_Name: Johnson
   m_EditorClassIdentifier: 
-  name: 
+  name: Johnson
   description: 
   frontSprite: {fileID: 21300000, guid: f0adbdecb19f40f4ba2b1d7fe40a790c, type: 3}
   backSprite: {fileID: 21300000, guid: b5755dc03512db04a9fe376e7f0bee29, type: 3}

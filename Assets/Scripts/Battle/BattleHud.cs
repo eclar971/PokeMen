@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class BattleHud : MonoBehaviour
     public void SetData(Pokemen pokemen)
     {
         nameText.text = pokemen.Base.Name;
+        Debug.Log(pokemen.Base.Name);
         levelText.text = "Lvl " + pokemen.Level;
         hpBar.SetHP((float) pokemen.HP / pokemen.MaxHp);
     }

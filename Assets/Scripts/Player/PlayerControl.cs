@@ -1,21 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerControl : MonoBehaviour
 {
     public float moveSpeed;
     public LayerMask solidObjectLayer;
     public LayerMask grassLayer;
+    public ParticleSystem encounter;
+    public Grid world;
+    public GameObject battleSystem;
+    public AudioClip transitionSound;
+    public Canvas startScreen;
 
     private bool isMoving;
+    private bool isEncounter;
     private Vector2 input;
+    private AudioSource audioSource;
 
     private Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        isEncounter = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -26,7 +37,15 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isMoving){
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            startScreen.enabled = false;
+            startScreen.GetComponent<AudioSource>().mute = true;
+            isEncounter = false;
+            world.GetComponent<AudioSource>().mute = false;
+        }
+        else if (!isMoving && !isEncounter)
+        {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
 
@@ -82,8 +101,20 @@ public class PlayerControl : MonoBehaviour
         {
             if (Random.Range(1, 101) <= 10) 
             {
-                Debug.Log("Encounter");
+                encounter.Play();
+                animator.SetBool("encounter", true);
+                world.GetComponent<AudioSource>().mute = true;
+                isEncounter = true;
+                audioSource.PlayOneShot(transitionSound);
+                Invoke("runChangeScene",.5f);
+                            
             }
         }
+    }
+    private void runChangeScene()
+    {
+        world.enabled = false;
+        battleSystem.SetActive(true);
+        animator.SetBool("encounter", false);
     }
 }
