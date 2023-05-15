@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,12 +12,14 @@ public class PlayerControl : MonoBehaviour
     public LayerMask grassLayer;
     public ParticleSystem encounter;
     public Grid world;
-    public GameObject battleSystem;
+    private BattleSystem battleSystemReal;
+    public GameObject battleSystemGO;
     public AudioClip transitionSound;
     public Canvas startScreen;
 
+    public event Action OnEncountered;
+
     private bool isMoving;
-    private bool isEncounter;
     private Vector2 input;
     private AudioSource audioSource;
 
@@ -26,7 +29,6 @@ public class PlayerControl : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        isEncounter = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -35,16 +37,15 @@ public class PlayerControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void HandleUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             startScreen.enabled = false;
             startScreen.GetComponent<AudioSource>().mute = true;
-            isEncounter = false;
             world.GetComponent<AudioSource>().mute = false;
         }
-        else if (!isMoving && !isEncounter)
+        else if (!isMoving)
         {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
@@ -99,22 +100,22 @@ public class PlayerControl : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position,0.1f,grassLayer) != null)
         {
-            if (Random.Range(1, 101) <= 10) 
+            if (UnityEngine.Random.Range(1, 101) <= 10) 
             {
                 encounter.Play();
                 animator.SetBool("encounter", true);
                 world.GetComponent<AudioSource>().mute = true;
-                isEncounter = true;
                 audioSource.PlayOneShot(transitionSound);
                 Invoke("runChangeScene",.5f);
-                            
             }
         }
     }
     private void runChangeScene()
     {
         world.enabled = false;
-        battleSystem.SetActive(true);
+        battleSystemGO.SetActive(true);
         animator.SetBool("encounter", false);
+        animator.SetBool("isMoving", false);
+        OnEncountered();
     }
 }
