@@ -12,6 +12,7 @@ public class Pokemen
     }
     public int Level {
         get { return level; }
+        set { level = value; }
     }
 
     public int Exp { get; set; }

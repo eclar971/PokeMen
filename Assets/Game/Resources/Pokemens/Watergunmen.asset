@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39e36945d804fa49b9370c03373ba34, type: 3}
+  m_Name: Watergunmen
+  m_EditorClassIdentifier: 
+  name: WaterGunMan
+  description: 
+  frontSprite: {fileID: 21300000, guid: b3af5b7bf0eac5b4ea5462fe7f2ab1aa, type: 3}
+  backSprite: {fileID: 21300000, guid: a9646d61f5b5e36478eeb96abbf306c1, type: 3}
+  type1: 3
+  type2: 17
+  maxHp: 43
+  attack: 23
+  defense: 43
+  spAttack: 22
+  spDefense: 22
+  speed: 12
+  expYeild: 300
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 602eaa0f0fcd18e4c8685ff472ace52e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: e19200936e3551248a46ca8e464d7f9e, type: 2}
+    level: 0

@@ -39,13 +39,17 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     public void HandleUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             startScreen.enabled = false;
             startScreen.GetComponent<AudioSource>().mute = true;
             world.GetComponent<AudioSource>().mute = false;
         }
-        else if (!isMoving)
+        else if (!isMoving && !startScreen.enabled)
         {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
@@ -102,6 +106,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (UnityEngine.Random.Range(1, 101) <= 10) 
             {
+                isMoving = true;
                 encounter.Play();
                 animator.SetBool("encounter", true);
                 world.GetComponent<AudioSource>().mute = true;
@@ -112,6 +117,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void runChangeScene()
     {
+        isMoving = false;
         world.enabled = false;
         battleSystemGO.SetActive(true);
         animator.SetBool("encounter", false);

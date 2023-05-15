@@ -36,6 +36,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.Setup(playerParty.GetHealthyPokemen());
         enemyUnit.Setup(wildPokemen);
         playerHud.SetData(playerUnit.Pokemen);
+        enemyUnit.Pokemen.Level = wildPokemen.Level;
         enemyHud.SetData(enemyUnit.Pokemen);
 
         dialogBox.SetMoveNames(playerUnit.Pokemen.Moves);
@@ -84,7 +85,7 @@ public class BattleSystem : MonoBehaviour
 
             int expGain = Mathf.FloorToInt(expYeild * enemyLevel / 7);
             playerUnit.Pokemen.Exp += expGain;
-            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemen.Base.name} gained {expGain} exp");
+            yield return dialogBox.TypeDialog($"{playerUnit.Pokemen.Base.name} gained {expGain} exp");
             yield return playerHud.SetExpSmooth();
 
             while (playerUnit.Pokemen.CheckForLevelUp())
@@ -92,7 +93,7 @@ public class BattleSystem : MonoBehaviour
                 playerUnit.Pokemen.HP = playerUnit.Pokemen.MaxHp;
                 yield return playerHud.UpdateHP();
                 playerHud.SetLvl();
-                yield return dialogBox.TypeDialog($"{enemyUnit.Pokemen.Base.name} grew to level {playerUnit.Pokemen.Level}");
+                yield return dialogBox.TypeDialog($"{playerUnit.Pokemen.Base.name} grew to level {playerUnit.Pokemen.Level}");
 
                 yield return playerHud.SetExpSmooth(true);
             }
@@ -227,7 +228,7 @@ public class BattleSystem : MonoBehaviour
                 currentMove -= 2;
         }
 
-        dialogBox.UpdateMoveSelection(currentAction, playerUnit.Pokemen.Moves[currentMove]);
+        dialogBox.UpdateMoveSelection(currentMove, playerUnit.Pokemen.Moves[currentMove]);
 
         if (Input.GetKeyDown(KeyCode.Z))
         {

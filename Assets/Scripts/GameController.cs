@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
         world.enabled = false;
 
         var playerParty = playerControl.GetComponent<PokemenParty>();
-        var wildPokemen = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildPokemen();
+        var wildPokemen = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildPokemen(playerParty.GetHealthyPokemen());
 
         battleSystem.StartBattle(playerParty, wildPokemen);
     }

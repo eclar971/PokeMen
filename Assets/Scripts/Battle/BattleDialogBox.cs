@@ -32,10 +32,10 @@ public class BattleDialogBox : MonoBehaviour
         foreach (var letter in dialog.ToCharArray())
         {
             dialogText.text += letter;
-            yield return new WaitForSeconds(1f/lettersPerSecond);
+            yield return new WaitForSeconds(.5f/lettersPerSecond);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
     }
 
     public void EnableDialogText (bool enabled)

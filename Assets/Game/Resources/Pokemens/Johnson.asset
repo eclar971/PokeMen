@@ -16,8 +16,8 @@ MonoBehaviour:
   description: 
   frontSprite: {fileID: 21300000, guid: f0adbdecb19f40f4ba2b1d7fe40a790c, type: 3}
   backSprite: {fileID: 21300000, guid: b5755dc03512db04a9fe376e7f0bee29, type: 3}
-  type1: 1
-  type2: 4
+  type1: 4
+  type2: 1
   maxHp: 69
   attack: 15
   defense: 20
@@ -27,4 +27,10 @@ MonoBehaviour:
   expYeild: 200
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: e19200936e3551248a46ca8e464d7f9e, type: 2}
-    level: 1
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 63404692cfc971f43922899cc737645e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 6f46e09c17613f34d862fcec6a5924dd, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 602eaa0f0fcd18e4c8685ff472ace52e, type: 2}
+    level: 0

@@ -57,7 +57,6 @@ public class BattleHud : MonoBehaviour
     }
     public IEnumerator UpdateHP()
     {
-
         yield return hpBar.SetHPSmooth((float)_pokemen.HP / _pokemen.MaxHp);
     }
 }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39e36945d804fa49b9370c03373ba34, type: 3}
+  m_Name: FlameBoi
+  m_EditorClassIdentifier: 
+  name: FlameBoi
+  description: 
+  frontSprite: {fileID: 21300000, guid: 988e219ec58dd6c468046b14e407e1da, type: 3}
+  backSprite: {fileID: 21300000, guid: 9cf1c6d2f58a5034d99d60ef1b663585, type: 3}
+  type1: 2
+  type2: 17
+  maxHp: 85
+  attack: 22
+  defense: 58
+  spAttack: 120
+  spDefense: 210
+  speed: 9001
+  expYeild: 8005
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: e19200936e3551248a46ca8e464d7f9e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 6f46e09c17613f34d862fcec6a5924dd, type: 2}
+    level: 0
